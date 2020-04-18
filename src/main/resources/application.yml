@@ -1,0 +1,11 @@
+micronaut:
+  application:
+    name: colorQueue
+  rabbitmq:
+    uri: amqp://localhost:15672
+mapping:
+  red: '255,0,0'
+  green: '0,255,0'
+  blue: '0,0,255'
+
+

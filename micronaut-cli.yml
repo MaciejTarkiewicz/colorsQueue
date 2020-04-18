@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: pl.tarkiewicz.colorsQueue
+---
+testFramework: junit
+sourceLanguage: java

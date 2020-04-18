@@ -22,7 +22,7 @@ public class PublishController {
             publishService.sentMessage(publishDto);
             return ResponseMessage
                     .success(Message.builder().publish(true).build());
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             return ResponseMessage
                     .failure(Message.builder().publish(false).build());
 

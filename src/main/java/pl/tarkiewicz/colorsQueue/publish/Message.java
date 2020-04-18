@@ -2,14 +2,14 @@ package pl.tarkiewicz.colorsQueue.publish;
 
 public class Message {
 
-    private boolean publisher;
+    private boolean published;
 
-    public boolean isPublisher() {
-        return publisher;
+    public boolean isPublished() {
+        return published;
     }
 
-    public void setPublisher(boolean publisher) {
-        this.publisher = publisher;
+    public void setPublished(boolean published) {
+        this.published = published;
     }
 
     static Builder builder() {
@@ -18,16 +18,16 @@ public class Message {
 
     public static final class Builder {
 
-        private boolean publisher;
+        private boolean published;
 
-        Builder publish(boolean publisher) {
-            this.publisher = publisher;
+        Builder publish(boolean published) {
+            this.published = published;
             return this;
         }
 
         Message build() {
             Message message = new Message();
-            message.setPublisher(publisher);
+            message.setPublished(published);
             return message;
         }
     }

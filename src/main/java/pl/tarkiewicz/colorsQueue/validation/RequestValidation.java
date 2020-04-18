@@ -19,7 +19,7 @@ public class RequestValidation {
     public List<PublishDto> validation(List<PublishDto> publishDtoList) {
         return publishDtoList.stream()
                 .filter(PublishDto::isPublish)
-                .filter(this::checkColorIsNotNull)
+                .filter(this::isNull)
                 .filter(this::isEmpty)
                 .collect(Collectors.toList());
     }
@@ -31,7 +31,7 @@ public class RequestValidation {
         return !publishDto.getColor().isEmpty();
     }
 
-    private boolean checkColorIsNotNull(PublishDto publishDto) {
+    private boolean isNull(PublishDto publishDto) {
         if (publishDto.getColor() == null) {
             logger.warning("Color is Null!");
         }

@@ -1,7 +1,6 @@
 package pl.tarkiewicz.colorsQueue.validation;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -19,14 +18,10 @@ public class RequestValidation {
 
     public List<PublishDto> validation(List<PublishDto> publishDtoList) {
         return publishDtoList.stream()
-                .filter(isPublish())
+                .filter(PublishDto::isPublish)
                 .filter(this::checkColorIsNotNull)
                 .filter(this::isEmpty)
                 .collect(Collectors.toList());
-    }
-
-    private Predicate<PublishDto> isPublish() {
-        return PublishDto::isPublish;
     }
 
     private boolean isEmpty(PublishDto publishDto) {

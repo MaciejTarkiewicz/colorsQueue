@@ -18,8 +18,16 @@ public class PublishController {
 
     @Post("/")
     public HttpResponse<?> publish(@Body List<PublishDto> publishDto) {
-        publishService.sentMessage(publishDto);
-        return HttpResponse.ok(new ResponseMessage(true));
+        try {
+            publishService.sentMessage(publishDto);
+            return ResponseMessage
+                    .success(Message.builder().publish(true).build());
+        } catch (RuntimeException e) {
+            return ResponseMessage
+                    .failure(Message.builder().publish(false).build());
+
+        }
+
     }
 
 }

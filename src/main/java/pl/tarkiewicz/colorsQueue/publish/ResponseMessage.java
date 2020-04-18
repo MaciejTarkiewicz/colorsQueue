@@ -1,14 +1,17 @@
 package pl.tarkiewicz.colorsQueue.publish;
 
+import io.micronaut.http.HttpResponse;
+
 public class ResponseMessage {
 
-    final boolean publisher;
-
-    public ResponseMessage(final boolean publisher) {
-        this.publisher = publisher;
+    public static HttpResponse<?> success(Message message) {
+        message.setPublisher(true);
+        return HttpResponse.ok(message);
     }
 
-    public boolean isPublisher() {
-        return publisher;
+    public static HttpResponse<?> failure(Message message) {
+        message.setPublisher(false);
+        return HttpResponse.badRequest(message);
     }
+
 }

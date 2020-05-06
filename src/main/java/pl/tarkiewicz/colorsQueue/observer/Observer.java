@@ -16,7 +16,7 @@ public class Observer implements MyObserver {
     }
 
     @Override
-    public void finish(String info) {
-        logger.info(String.format("Event %s has been sent to the queue", info));
+    public void finish(String color) {
+        logger.info(String.format("Event %s has been sent to the queue", color));
     }
 }

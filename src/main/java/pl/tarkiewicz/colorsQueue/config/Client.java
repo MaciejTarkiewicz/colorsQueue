@@ -2,12 +2,12 @@ package pl.tarkiewicz.colorsQueue.config;
 
 import io.micronaut.configuration.rabbitmq.annotation.Binding;
 import io.micronaut.configuration.rabbitmq.annotation.RabbitClient;
-import pl.tarkiewicz.colorsQueue.common.ColorQueueLoad;
+import pl.tarkiewicz.colorsQueue.events.ColorEvent;
 
 @RabbitClient("micronaut")
-public interface Client {
+public interface Client  {
 
     @Binding("colors")
-    void sentMessage(ColorQueueLoad color);
+    void sentMessage(ColorEvent color);
 
 }

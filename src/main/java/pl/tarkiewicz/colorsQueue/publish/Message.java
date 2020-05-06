@@ -12,7 +12,7 @@ public class Message {
         this.published = published;
     }
 
-    static Builder builder() {
+    public static Builder builder() {
         return new Builder();
     }
 
@@ -20,14 +20,14 @@ public class Message {
 
         private boolean published;
 
-        Builder publish(boolean published) {
+        public Builder publish(boolean published) {
             this.published = published;
             return this;
         }
 
-        Message build() {
+        public Message build() {
             Message message = new Message();
-            message.setPublished(published);
+            message.published = this.published;
             return message;
         }
     }

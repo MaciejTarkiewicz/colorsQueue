@@ -9,6 +9,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import io.micronaut.context.annotation.Context;
+import pl.tarkiewicz.colorsQueue.events.ColorEvent;
 import pl.tarkiewicz.colorsQueue.publish.PublishDto;
 import pl.tarkiewicz.colorsQueue.validation.RequestValidation;
 
@@ -23,7 +24,7 @@ public class ColorConverter {
         this.mapper = mapper;
     }
 
-    public ColorQueueLoad apply(PublishDto publishDto) {
+    public ColorEvent apply(PublishDto publishDto) {
         Map<String, String> colorsMap = Map.of(
                 "RED", mapper.getRed(),
                 "BLUE", mapper.getBlue(),
@@ -33,7 +34,7 @@ public class ColorConverter {
         return mapColor(publishDto, colorsMap).orElseGet(this::colorNotExist);
     }
 
-    private Optional<ColorQueueLoad> mapColor(PublishDto publishDto, Map<String, String> colorsMap) {
+    private Optional<ColorEvent> mapColor(PublishDto publishDto, Map<String, String> colorsMap) {
         return colorsMap.entrySet().stream()
                 .map(toColor(publishDto))
                 .filter(Objects::nonNull)
@@ -41,7 +42,7 @@ public class ColorConverter {
                 .collect(toSingleton());
     }
 
-    private ColorQueueLoad colorNotExist() {
+    private ColorEvent colorNotExist() {
         logger.warning("Color doesn't exist!");
         return null;
     }
@@ -57,8 +58,8 @@ public class ColorConverter {
         };
     }
 
-    private ColorQueueLoad createColorQueueLoad(String color) {
-        return new ColorQueueLoad(color);
+    private ColorEvent createColorQueueLoad(String color) {
+        return new ColorEvent(color);
     }
 
     private static <T> Collector<T, ?, Optional<T>> toSingleton() {

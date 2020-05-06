@@ -1,4 +1,4 @@
-package pl.tarkiewicz.colorsQueue.publish;
+package pl.tarkiewicz.colorsQueue.api;
 
 import java.util.List;
 
@@ -6,6 +6,10 @@ import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
+import pl.tarkiewicz.colorsQueue.publish.Message;
+import pl.tarkiewicz.colorsQueue.publish.PublishDto;
+import pl.tarkiewicz.colorsQueue.publish.PublishService;
+import pl.tarkiewicz.colorsQueue.publish.ResponseMessage;
 
 @Controller("/publish")
 public class PublishController {
@@ -23,6 +27,7 @@ public class PublishController {
             return ResponseMessage
                     .success(Message.builder().publish(true).build());
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseMessage
                     .failure(Message.builder().publish(false).build());
 
